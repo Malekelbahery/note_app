@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class RowButton extends StatelessWidget {
   const RowButton({
     super.key,
@@ -9,8 +8,9 @@ class RowButton extends StatelessWidget {
     this.width = 200,
     this.backgroundColor = Colors.black,
     this.radius = 100,
-    this.type = MainAxisAlignment.spaceEvenly,
     required this.widgets,
+    this.typeAlignment = MainAxisAlignment.spaceEvenly,
+    this.typeSize = MainAxisSize.max,
   });
 
   final void Function()? onTap;
@@ -18,8 +18,9 @@ class RowButton extends StatelessWidget {
   final double width;
   final Color backgroundColor;
   final double radius;
-  final MainAxisAlignment type;
+  final MainAxisAlignment typeAlignment;
   final List<Widget> widgets;
+  final MainAxisSize typeSize;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,8 @@ class RowButton extends StatelessWidget {
             color: backgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(radius))),
         child: Row(
-          mainAxisAlignment: type,
+          mainAxisSize: typeSize,
+          mainAxisAlignment: typeAlignment,
           children: widgets,
         ),
       ),

@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:note_app/abbreviations/buttons/googleButton.dart';
 import 'package:note_app/abbreviations/buttons/perfect_button.dart';
 import 'package:note_app/abbreviations/text_Form/text_Form_Field_Number1.dart';
 import 'package:note_app/abbreviations/styles/textStyles.dart';
@@ -43,9 +46,11 @@ class _LoginState extends State<Login> {
               //
               // Buttons
               //
-              forgetButton(),
+              forgetButton(context),
               heightApp(60),
               loginButton(context),
+              heightApp(20),
+              googleButton(),
               //
               // navigator
               //
@@ -115,9 +120,15 @@ textField2() {
   );
 }
 
-forgetButton() {
+forgetButton(BuildContext context) {
   return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        if(_loginKey.currentState!.validate()){
+          FirebaseAuth.instance.sendPasswordResetEmail(email: _email.text);
+        }else{
+          snackBarMassage(context, 'enter your email and eny password', red);
+        }
+      },
       child: Text(
         'forget Password?',
         style: TextStyle(
@@ -161,6 +172,30 @@ loginButton(BuildContext context) {
     title: 'Login',
     height: 50,
     radius: 15,
+  );
+}
+
+googleButton() {
+  return GoogleButton(
+    width: double.infinity,
+    height: 50,
+    backgroundColor: Colors.transparent,
+    widgets: [
+      Container(
+        padding: const EdgeInsets.all(10),
+          width: 50,
+          height: 50,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(100)),
+            color: Colors.black,
+          ),
+          child: Image.asset('images/G40.png')),
+      Text(
+        '  Google Sign In',
+        style:
+        TextStyle(color: white, fontWeight: FontWeight.bold, fontSize: 25),
+      )
+    ],
   );
 }
 

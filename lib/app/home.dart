@@ -33,7 +33,7 @@ drawerHome (BuildContext context){
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               RowButton(
-                  type: MainAxisAlignment.start,
+                  typeAlignment: MainAxisAlignment.start,
                   backgroundColor: Colors.transparent,
                   width: double.infinity,
                   height: 20,

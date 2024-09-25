@@ -4,6 +4,7 @@ import 'package:note_app/abbreviations/buttons/perfect_button.dart';
 import 'package:note_app/abbreviations/text_Form/text_Form_Field_Number1.dart';
 import 'package:note_app/abbreviations/styles/textStyles.dart';
 
+import '../../abbreviations/buttons/googleButton.dart';
 import '../../abbreviations/colours/styleColor.dart';
 
 TextEditingController _name = TextEditingController();
@@ -61,6 +62,8 @@ class _RegisterState extends State<Register> {
               heightApp(60),
               //
               registerButton(context),
+              heightApp(20),
+              googleButton(),
               //
               //
               // navigator
@@ -188,6 +191,30 @@ registerButton(BuildContext context) {
     title: 'Sign Up',
     height: 50,
     radius: 15,
+  );
+}
+
+googleButton() {
+  return GoogleButton(
+    width: double.infinity,
+    height: 50,
+    backgroundColor: Colors.transparent,
+    widgets: [
+      Container(
+          padding: const EdgeInsets.all(10),
+          width: 50,
+          height: 50,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(100)),
+            color: Colors.black,
+          ),
+          child: Image.asset('images/G40.png')),
+      Text(
+        '  Google Sign In',
+        style:
+        TextStyle(color: white, fontWeight: FontWeight.bold, fontSize: 25),
+      )
+    ],
   );
 }
 
